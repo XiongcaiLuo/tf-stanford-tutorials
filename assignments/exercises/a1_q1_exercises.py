@@ -22,7 +22,11 @@ out = tf.cond(tf.less(x, y), lambda: tf.add(x, y), lambda: tf.sub(x, y))
 # Hint: Look up tf.case().
 ###############################################################################
 
-# YOUR CODE
+x = tf.random_uniform([], -1, 1, dtype=tf.float32)
+y = tf.random_uniform([], -1, 1, dtype=tf.float32)
+out = tf.case({tf.less(x, y): lambda: tf.add(x, y), 
+			tf.greater(x, y): lambda: tf.subtract(x, y)}, 
+			default=lambda: tf.constant(0.0), exclusive=True)
 
 ###############################################################################
 # 1c: Create the tensor x of the value [[0, -2, -1], [0, 1, 2]] 
@@ -31,7 +35,9 @@ out = tf.cond(tf.less(x, y), lambda: tf.add(x, y), lambda: tf.sub(x, y))
 # Hint: Look up tf.equal().
 ###############################################################################
 
-# YOUR CODE
+x = tf.constant([[0, -2, -1], [0, 1, 2]] )
+y = tf.zeros_like(x)
+out = tf.equal(x, y)
 
 ###############################################################################
 # 1d: Create the tensor x of value 
